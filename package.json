@@ -1,0 +1,14 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,magenta \"pnpm -C backend dev\" \"pnpm -C frontend dev\"",
+    "dev:backend": "pnpm -C backend dev",
+    "dev:frontend": "pnpm -C frontend dev",
+    "start": "pnpm -C backend start",
+    "install:all": "pnpm install && pnpm -C backend install && pnpm -C frontend install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
