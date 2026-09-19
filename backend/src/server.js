@@ -1,6 +1,6 @@
 import express from "express"
+import cors from "cors"
 import dotenv from "dotenv"
-import path from "path"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import { connectDB } from "./config/db.js"
@@ -9,9 +9,9 @@ import { connectDB } from "./config/db.js"
 dotenv.config()
 
 const app = express()
-const __dirname = path.resolve()
 
 
+app.use(cors({ origin: "http://localhost:5173" }))
 app.use(express.json())
 
 app.use("/api/notes", notesRoutes)
