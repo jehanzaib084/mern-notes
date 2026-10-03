@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react"
+import { Route, Routes } from "react-router"
+
+import HomePage from "./pages/HomePage"
+import CreatePage from "./pages/CreatePage"
+import NoteDetailPage from "./pages/NoteDetailPage"
 
 function App() {
-  const [notes, setNotes] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/notes")
-      .then((res) => res.json())
-      .then((data) => setNotes(data))
-      .catch((error) => console.error("notes fetch failed", error))
-  }, [])
-
   return (
-    <div>
-      <h1>notes</h1>
-
-      {notes.map((note) => (
-        <div key={note._id}>
-          <h3>{note.title}</h3>
-          <p>{note.content}</p>
-        </div>
-      ))}
+    <div className="relative h-full w-full">
+      <div className="absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]" />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<CreatePage />} />
+        <Route path="/note/:id" element={<NoteDetailPage />} />
+      </Routes>
     </div>
   )
 }
